@@ -63,13 +63,11 @@ describe('Stock', () => {
     it('should not sell stock', (done) => {
       const stock1 = new Stock('AMZN');
       stock1.shares = 50;
-      stock1.purchasePricePerShare = 100;
 
-      stock1.sell(200, (err, sharePrice, totalGained) => {
+      stock1.sell(200, (err) => {
         expect(err).to.be.not.null;
+        expect(err.message).to.equal('NOT ENOUGH SHARES TO SELL!');
         expect(stock1.shares).to.equal(50);
-        expect(sharePrice).to.equal(0);
-        expect(totalGained).to.equal(0);
         done();
       });
     });
