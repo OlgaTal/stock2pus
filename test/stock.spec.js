@@ -35,7 +35,6 @@ describe('Stock', () => {
       const stock1 = new Stock('AMZN');
       stock1.purchase(50, (err, totalPaid) => {
         expect(err).to.be.null;
-        expect(totalPaid).to.be.above(0);
         expect(stock1.shares).to.equal(50);
         expect(stock1.name).to.equal('Amazon');
         expect(stock1.purchasePricePerShare).to.equal(100);
@@ -68,6 +67,15 @@ describe('Stock', () => {
         expect(err).to.be.not.null;
         expect(err.message).to.equal('NOT ENOUGH SHARES TO SELL!');
         expect(stock1.shares).to.equal(50);
+        done();
+      });
+    });
+  });
+  describe('.getQuote', () => {
+    it('should return price of one stock share', (done) => {
+      Stock.getQuote('AMZN', (err, sharePrice) => {
+        expect(err).to.be.null;
+        expect(sharePrice).to.equal(100);
         done();
       });
     });
