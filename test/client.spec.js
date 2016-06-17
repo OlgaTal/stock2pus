@@ -53,9 +53,8 @@ describe('Client', () => {
       const c1 = new Client('Bob');
       c1.deposit(500);
       c1.purchaseStock('aapl', 3, 'Tech', (err, totalPaid) => {
-        console.log('TEST portfolios.length:', c1.portfolios.length);
         expect(err).to.be.null;
-        // expect(c1.portfolios).to.have.length(1);
+        expect(c1.portfolios).to.have.length(1);
         expect(c1.cashBalance).to.equal(200);
         expect(totalPaid).to.equal(300);
         done();
